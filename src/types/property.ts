@@ -1,6 +1,7 @@
 export interface Property {
   id: string;
   property_img: string;
+  gallery_images?: string[];
   property_title: string;
   property_price: string;
   category: 'apartment' | 'villa' | 'office' | 'shop' | 'house' | 'warehouse';

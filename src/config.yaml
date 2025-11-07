@@ -1,6 +1,6 @@
 site:
-  name: AstroWind
-  site: 'https://astrowind.vercel.app'
+  name: Your Real Estate Agent
+  site: 'https://yourdomain.com'
   base: '/'
   trailingSlash: false
 
@@ -9,22 +9,22 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: AstroWind
-    template: '%s — AstroWind'
-  description: "\U0001F680 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs."
+    default: Your Real Estate Agent - Find Your Dream Home
+    template: '%s — Your Real Estate Agent'
+  description: "Professional real estate services for buying, selling, and renting residential properties. Expert guidance for your home journey with personalized service and local market expertise."
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: AstroWind
+    site_name: Your Real Estate Agent
     images:
       - url: '~/assets/images/default.png'
         width: 1200
         height: 628
     type: website
   twitter:
-    handle: '@arthelokyo'
-    site: '@arthelokyo'
+    handle: '@youragent'
+    site: '@youragent'
     cardType: summary_large_image
 
 i18n:

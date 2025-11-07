@@ -1,224 +1,312 @@
 ---
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Content from '~/components/widgets/Content.astro';
+import Features from '~/components/widgets/Features.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import Hero from '~/components/widgets/Hero.astro';
-import Testimonials from '~/components/widgets/Testimonials.astro';
+import Steps from '~/components/widgets/Steps.astro';
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
-  title: 'Services',
+  title: 'Real Estate Services - Comprehensive Solutions for Buyers & Sellers',
 };
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero Widget ******************* -->
-
+  <!-- Hero Section -->
   <Hero
     tagline="Services"
-    title="Elevate your projects with our stunning templates"
-    subtitle="Explore our meticulously crafted templates tailored to various industries and purposes. From captivating presentations to functional website designs, we offer the tools you need to succeed."
-    actions={[{ variant: 'primary', target: '_blank', text: 'Start exploring', href: '/' }]}
+    title="Comprehensive Real Estate Solutions"
+    subtitle="From finding your dream home to selling your property at the best price, I provide expert guidance and personalized service throughout your real estate journey."
+    actions={[{ variant: 'primary', text: 'Schedule Consultation', href: '/contact', icon: 'tabler:calendar' }]}
     image={{
-      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80',
-      alt: 'AstroWind Hero Image',
+      src: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80',
+      alt: 'Real Estate Services',
     }}
   />
 
-  <!-- Features2 Widget ************** -->
-
-  <Features2
-    title="Explore our diverse templates"
-    subtitle="Discover our selection below to streamline and elevate your projects."
+  <!-- Core Services -->
+  <Features
+    id="services"
+    title="What I Offer"
+    subtitle="Full-service real estate solutions tailored to your unique needs"
     columns={3}
     items={[
       {
-        title: 'Educational',
+        title: 'Buyer Representation',
         description:
-          'By harmonizing instructional design and visual appeal, templates streamline content creation for varied materials, expediting development and cultivating engaging educational spaces.',
-        icon: 'tabler:school',
+          'Expert guidance through every step of the home buying process, from property search to closing.',
+        icon: 'tabler:home-search',
       },
       {
-        title: 'Interior Design',
+        title: 'Seller Services',
         description:
-          'Crafting functional, visually appealing spaces for residential and commercial use. Templates emphasize layout, colors, and furniture setups, offering a versatile toolkit for your design vision.',
-        icon: 'tabler:home-star',
+          'Professional marketing and negotiation to sell your property quickly and for the best price.',
+        icon: 'tabler:building',
       },
       {
-        title: 'Photography',
-        description: `Empowering photographers, our templates facilitate captivating storytelling. With a keen focus on layout, galleries, and typography, they cater to both professionals and enthusiasts.`,
-        icon: 'tabler:photo',
-      },
-      {
-        title: 'E-commerce',
+        title: 'Property Management',
         description:
-          'Developing engaging online stores, our E-commerce templates ensure a dynamic presence to effectively showcase products. Ideal for startups or revamps.',
-        icon: 'tabler:shopping-cart',
+          'Complete rental property management including tenant screening and maintenance coordination.',
+        icon: 'tabler:key',
       },
       {
-        title: 'Blog',
+        title: 'Market Analysis',
         description:
-          'With attention to typography, these templates empower effective content presentation for writers at any stage, ensuring visually engaging and user-friendly blogs.',
-        icon: 'tabler:article',
+          'Detailed comparative market analysis to help you make informed pricing and investment decisions.',
+        icon: 'tabler:chart-line',
       },
       {
-        title: 'Business',
+        title: 'Investment Consulting',
         description:
-          'Providing polished options for effective visual communication, these templates empower both startups and established companies for a professional brand presence.',
-        icon: 'tabler:building-store',
+          'Strategic advice for real estate investors looking to maximize returns on property investments.',
+        icon: 'tabler:cash',
       },
       {
-        title: 'Branding',
+        title: 'First-Time Buyer Support',
         description:
-          'Offering pre-designed elements for a consistent brand identity, including logos and marketing materials. Ideal for new ventures or revamps.',
-        icon: 'tabler:arrow-big-up-lines',
-      },
-      {
-        title: 'Medical',
-        description: `From presentations to patient forms, these tools enhance communication effectiveness for healthcare professionals. Ideal for medical practices and research pursuits.`,
-        icon: 'tabler:vaccine',
-      },
-      {
-        title: 'Fashion Design',
-        description:
-          'With attention to detail, customization, and contemporary design, they empower designers to showcase ideas cohesively. Ideal for all levels of designers.',
-        icon: 'tabler:tie',
+          'Specialized guidance for first-time homebuyers navigating the purchasing process.',
+        icon: 'tabler:users',
       },
     ]}
   />
 
-  <!-- Content Widget **************** -->
-
+  <!-- Buyer Services Detail -->
   <Content
+    id="buyers"
     isReversed
+    tagline="For Buyers"
+    title="Finding Your Perfect Home"
     items={[
       {
-        title: 'High-Quality Designs',
+        title: 'Personalized Property Search',
         description:
-          'Our templates feature top-tier designs that ensure a professional and polished appearance for your projects.',
-        icon: 'tabler:wand',
+          'Access to exclusive listings and off-market properties that match your specific criteria and budget.',
+        icon: 'tabler:search',
       },
       {
-        title: 'Customization Tools',
+        title: 'Neighborhood Expertise',
         description:
-          'Tailor each template to your unique needs with user-friendly customization tools that let you personalize colors, fonts, and content.',
-        icon: 'tabler:settings',
+          'In-depth knowledge of local schools, amenities, commute times, and future development plans.',
+        icon: 'tabler:map-pin',
       },
       {
-        title: 'Pre-Designed Elements',
+        title: 'Negotiation Support',
         description:
-          'Save time and effort with our ready-to-use elements, including graphics, icons, and layouts that enhance the visual appeal of your creations.',
-        icon: 'tabler:presentation',
+          'Skilled negotiation to secure the best price and favorable terms on your home purchase.',
+        icon: 'tabler:handshake',
       },
       {
-        title: 'Preview and Mockup Views',
+        title: 'Closing Coordination',
         description:
-          'Visualize the final outcome before making any changes using our preview and mockup views, ensuring your projects meet your expectations.',
-        icon: 'tabler:carousel-horizontal',
+          'Guidance through inspections, appraisals, and all paperwork to ensure a smooth closing process.',
+        icon: 'tabler:clipboard-check',
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1525909002-1b05e0c869d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80',
-      alt: 'Features Image',
+      src: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Home Buying Services',
     }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Main Features</h3>
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+        Your Home Buying Journey Starts Here
+      </h3>
+      I understand that buying a home is one of the biggest decisions you'll make. My goal is to make the process
+      as smooth and stress-free as possible while ensuring you find the perfect property.
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
     </Fragment>
   </Content>
 
-  <!-- Content Widget **************** -->
-
+  <!-- Seller Services Detail -->
   <Content
+    id="sellers"
     isAfterContent
+    tagline="For Sellers"
+    title="Selling Your Property with Confidence"
     items={[
       {
-        title: 'Time Savings',
+        title: 'Professional Photography',
         description:
-          'Streamline your workflow, enabling you to create stunning materials efficiently and allocate more time to your core tasks.',
-        icon: 'tabler:clock',
+          'High-quality photos and virtual tours that showcase your property in the best possible light.',
+        icon: 'tabler:camera',
       },
       {
-        title: 'Professional Appearance',
+        title: 'Strategic Marketing',
         description:
-          'Elevate your projects with the polished and sophisticated look that our templates provide, making a lasting impression on your audience.',
-        icon: 'tabler:school',
+          'Multi-channel marketing strategy including MLS, social media, and targeted advertising to reach qualified buyers.',
+        icon: 'tabler:ad',
       },
       {
-        title: 'Cost-Efficiency',
+        title: 'Pricing Strategy',
         description:
-          'Benefit from cost savings by avoiding the need for custom design work, as our templates offer professional-grade designs at a fraction of the cost.',
-        icon: 'tabler:coin',
+          'Data-driven pricing analysis to position your property competitively while maximizing your return.',
+        icon: 'tabler:currency-dollar',
       },
       {
-        title: 'Instant Download',
+        title: 'Staging Consultation',
         description:
-          'Enjoy immediate access to your chosen templates upon purchase, enabling you to begin working on your projects without delay.',
-        icon: 'tabler:file-download',
+          'Expert advice on preparing and staging your home to appeal to the widest range of buyers.',
+        icon: 'tabler:sofa',
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1552664688-cf412ec27db2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
-      alt: 'Benefits Image',
+      src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Home Selling Services',
     }}
   >
     <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Benefits</h3>
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+        Maximum Exposure, Best Results
+      </h3>
+      Selling your home shouldn't be stressful. With proven marketing strategies and expert negotiation skills,
+      I'll help you sell faster and for the best possible price.
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
     </Fragment>
   </Content>
 
-  <!-- Testimonials Widget *********** -->
-
-  <Testimonials
-    title="Words from real customers"
-    testimonials={[
+  <!-- Property Management Services -->
+  <Content
+    id="rentals"
+    isReversed
+    tagline="For Landlords"
+    title="Hassle-Free Property Management"
+    items={[
       {
-        testimonial: `The designs are not only visually appealing but also highly professional. The templates have saved me a significant amount of time while helping me make a lasting impression on my clients.`,
-        name: 'Emily Kennedy',
-        job: 'Front-end developer',
-        image: {
-          src: 'https://images.unsplash.com/photo-1618835962148-cf177563c6c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=930&q=80',
-          alt: 'Emily Kennedy Image',
-        },
+        title: 'Tenant Screening',
+        description:
+          'Thorough background checks, credit reports, and reference verification to find reliable tenants.',
+        icon: 'tabler:user-search',
       },
       {
-        testimonial: `It beautifully showcases my work, with its clean and elegant design that lets my photographs shine. Customization was a breeze, even for a non-tech person like me. The result is a professional and immersive portfolio that's garnered numerous compliments.`,
-        name: 'Sarah Hansen',
-        job: 'Photographer',
-        image: {
-          src: 'https://images.unsplash.com/photo-1561406636-b80293969660?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80',
-          alt: 'Sarah Hansen Image',
-        },
+        title: 'Rent Collection',
+        description:
+          'Automated rent collection and accounting to ensure consistent cash flow and financial tracking.',
+        icon: 'tabler:receipt',
       },
       {
-        testimonial: `I discovered these templates and I'm impressed by their variety and quality. They've helped me establish a consistent brand image across my marketing and social platforms, elevating my business's overall appearance.`,
-        name: 'Mark Wilkinson',
-        job: 'Small business owner',
-        image: {
-          src: 'https://images.unsplash.com/photo-1545167622-3a6ac756afa4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=824&q=80',
-          alt: 'Mark Wilkinson Image',
-        },
+        title: 'Maintenance Coordination',
+        description:
+          'Network of trusted contractors for repairs and maintenance, available 24/7 for emergencies.',
+        icon: 'tabler:tools',
+      },
+      {
+        title: 'Legal Compliance',
+        description:
+          'Ensure all leases and procedures comply with local, state, and federal housing regulations.',
+        icon: 'tabler:scale',
       },
     ]}
-    callToAction={{
-      target: '_blank',
-      text: 'More testimonials...',
-      href: 'https://github.com/arthelokyo/astrowind',
-      icon: 'tabler:chevron-right',
+    image={{
+      src: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Property Management Services',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+        Protect Your Investment
+      </h3>
+      Let me handle the day-to-day management of your rental properties so you can enjoy the benefits of
+      real estate investment without the headaches.
+    </Fragment>
+
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Investment Services -->
+  <Features2
+    id="analysis"
+    title="Investment & Analysis Services"
+    tagline="For Investors"
+    columns={2}
+    items={[
+      {
+        title: 'Market Research',
+        description:
+          'Comprehensive market analysis including trends, demographics, and growth projections to identify lucrative investment opportunities.',
+        icon: 'tabler:chart-dots',
+      },
+      {
+        title: 'Property Valuation',
+        description:
+          'Accurate property valuations using comparable sales, income approach, and cost analysis methods.',
+        icon: 'tabler:calculator',
+      },
+      {
+        title: 'Investment Strategy',
+        description:
+          'Customized investment strategies based on your financial goals, risk tolerance, and time horizon.',
+        icon: 'tabler:target',
+      },
+      {
+        title: 'Portfolio Management',
+        description:
+          'Ongoing analysis and recommendations to optimize your real estate investment portfolio performance.',
+        icon: 'tabler:briefcase',
+      },
+    ]}
+  />
+
+  <!-- Process Steps -->
+  <Steps
+    title="How I Work With You"
+    subtitle="A streamlined process designed to deliver results"
+    items={[
+      {
+        title: 'Step 1: <span class="font-medium">Initial Consultation</span>',
+        description:
+          'Free consultation to understand your needs, goals, and timeline. We discuss your requirements and I explain how I can help.',
+        icon: 'tabler:users',
+      },
+      {
+        title: 'Step 2: <span class="font-medium">Strategy Development</span>',
+        description:
+          'Create a customized plan based on your specific situation, whether buying, selling, or investing.',
+        icon: 'tabler:list-check',
+      },
+      {
+        title: 'Step 3: <span class="font-medium">Execution</span>',
+        description:
+          'Put the plan into action with regular communication and updates throughout the process.',
+        icon: 'tabler:rocket',
+      },
+      {
+        title: 'Step 4: <span class="font-medium">Success & Follow-Up</span>',
+        description:
+          'Close the transaction successfully and provide ongoing support for any future real estate needs.',
+        icon: 'tabler:check',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Working Process',
     }}
   />
 
-  <!-- CallToAction Widget *********** -->
-
+  <!-- Call to Action -->
   <CallToAction
     actions={[
       {
         variant: 'primary',
-        text: 'Start exploring',
-        href: '/',
+        text: 'Get Started Today',
+        href: '/contact',
+        icon: 'tabler:phone',
+      },
+      {
+        variant: 'secondary',
+        text: 'View Properties',
+        href: '/properties',
       },
     ]}
-    title="Dive into our template collection"
-    subtitle="Whether you're in business, design, or education, our templates are here to elevate your projects."
+    title="Ready to Take the Next Step?"
+    subtitle="Whether you're buying, selling, or investing, I'm here to help you achieve your real estate goals. Contact me today for a free consultation."
   />
 </Layout>
