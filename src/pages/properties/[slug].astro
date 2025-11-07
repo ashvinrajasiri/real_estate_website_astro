@@ -1,0 +1,239 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import PropertyGallery from '~/components/common/PropertyGallery.astro';
+import MortgageCalculator from '~/components/common/MortgageCalculator.astro';
+import { Icon } from 'astro-icon/components';
+import { getAllProperties } from '~/utils/sanity';
+import type { GetStaticPaths } from 'astro';
+
+export async function getStaticPaths() {
+  const properties = await getAllProperties();
+  return properties.map((property) => ({
+    params: { slug: property.slug },
+    props: { property },
+  }));
+}
+
+const { property } = Astro.props;
+
+// Use gallery images if available, otherwise fall back to main image
+const galleryImages = property.gallery_images && property.gallery_images.length > 0
+  ? property.gallery_images
+  : [property.property_img];
+
+const metadata = {
+  title: `${property.property_title} - ${property.location}`,
+  description: `${property.category.charAt(0).toUpperCase() + property.category.slice(1)} for ${property.status.toLowerCase()} in ${property.location}. ${property.beds} beds, ${property.bathrooms} baths, ${property.livingArea}.`,
+};
+---
+
+<Layout metadata={metadata}>
+  <article class="px-4 py-12 sm:px-6 mx-auto lg:px-8 max-w-7xl">
+    <!-- Breadcrumb -->
+    <nav class="mb-8" aria-label="Breadcrumb">
+      <ol class="flex items-center space-x-2 text-sm">
+        <li><a href="/" class="text-blue-600 hover:text-blue-700">Home</a></li>
+        <li><Icon name="tabler:chevron-right" class="w-4 h-4 text-slate-400" /></li>
+        <li><a href="/properties" class="text-blue-600 hover:text-blue-700">Properties</a></li>
+        <li><Icon name="tabler:chevron-right" class="w-4 h-4 text-slate-400" /></li>
+        <li class="text-slate-600 dark:text-slate-400">{property.property_title}</li>
+      </ol>
+    </nav>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Main Content -->
+      <div class="lg:col-span-2">
+        <!-- Gallery -->
+        <PropertyGallery images={galleryImages} title={property.property_title} />
+
+        <!-- Title & Price -->
+        <div class="mt-8 mb-6">
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-2">
+                {property.property_title}
+              </h1>
+              <div class="flex items-center text-slate-600 dark:text-slate-400">
+                <Icon name="tabler:map-pin" class="w-5 h-5 mr-1" />
+                <p class="text-lg">{property.location}</p>
+              </div>
+            </div>
+            <div class="text-right">
+              <p class="text-3xl font-bold text-blue-600 dark:text-blue-400">
+                {property.property_price}
+              </p>
+              {property.status === 'Rent' && (
+                <p class="text-sm text-slate-600 dark:text-slate-400">per month</p>
+              )}
+            </div>
+          </div>
+
+          <!-- Status Badge -->
+          <div class="flex items-center space-x-2">
+            <span class={`px-4 py-2 rounded-lg text-sm font-semibold ${property.status === 'Rent' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' : 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'}`}>
+              For {property.status === 'Rent' ? 'Rent' : 'Sale'}
+            </span>
+            <span class="px-4 py-2 rounded-lg text-sm font-semibold bg-slate-100 text-slate-800 dark:bg-slate-800 dark:text-slate-200 capitalize">
+              {property.category}
+            </span>
+          </div>
+        </div>
+
+        <!-- Key Features -->
+        <div class="bg-slate-50 dark:bg-slate-800 rounded-lg p-6 mb-8">
+          <h2 class="text-xl font-bold mb-4 text-slate-900 dark:text-white">Key Features</h2>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="flex items-center space-x-3">
+              <div class="flex-shrink-0 w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center">
+                <Icon name="tabler:bed" class="w-6 h-6 text-blue-600 dark:text-blue-400" />
+              </div>
+              <div>
+                <p class="text-2xl font-bold text-slate-900 dark:text-white">{property.beds}</p>
+                <p class="text-sm text-slate-600 dark:text-slate-400">Bedrooms</p>
+              </div>
+            </div>
+
+            <div class="flex items-center space-x-3">
+              <div class="flex-shrink-0 w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center">
+                <Icon name="tabler:bath" class="w-6 h-6 text-blue-600 dark:text-blue-400" />
+              </div>
+              <div>
+                <p class="text-2xl font-bold text-slate-900 dark:text-white">{property.bathrooms}</p>
+                <p class="text-sm text-slate-600 dark:text-slate-400">Bathrooms</p>
+              </div>
+            </div>
+
+            <div class="flex items-center space-x-3">
+              <div class="flex-shrink-0 w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center">
+                <Icon name="tabler:car-garage" class="w-6 h-6 text-blue-600 dark:text-blue-400" />
+              </div>
+              <div>
+                <p class="text-2xl font-bold text-slate-900 dark:text-white">{property.garages}</p>
+                <p class="text-sm text-slate-600 dark:text-slate-400">Garages</p>
+              </div>
+            </div>
+
+            <div class="flex items-center space-x-3">
+              <div class="flex-shrink-0 w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center">
+                <Icon name="tabler:ruler-2" class="w-6 h-6 text-blue-600 dark:text-blue-400" />
+              </div>
+              <div class="min-w-0">
+                <p class="text-2xl font-bold text-slate-900 dark:text-white whitespace-nowrap">{property.livingArea}</p>
+                <p class="text-sm text-slate-600 dark:text-slate-400">Living Area</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mortgage Calculator (only show for properties for sale) -->
+        {property.status === 'Buy' && (
+          <div class="mb-8">
+            <MortgageCalculator propertyPrice={parseInt(property.property_price.replace(/[^0-9]/g, ''))} />
+          </div>
+        )}
+
+        <!-- Description -->
+        <div class="mb-8">
+          <h2 class="text-2xl font-bold mb-4 text-slate-900 dark:text-white">About This Property</h2>
+          <div class="prose dark:prose-invert max-w-none">
+            <p class="text-slate-700 dark:text-slate-300 leading-relaxed">
+              This exceptional {property.category} is located in the desirable {property.region} region of {property.location}.
+              Featuring {property.beds} bedrooms and {property.bathrooms} bathrooms across {property.livingArea} of beautifully
+              designed living space, this property offers the perfect blend of comfort and style.
+            </p>
+            <p class="text-slate-700 dark:text-slate-300 leading-relaxed mt-4">
+              The property includes {property.garages} garage {property.garages === 1 ? 'space' : 'spaces'} and is currently
+              available for {property.status.toLowerCase()}. Don't miss this opportunity to make this wonderful property your new home.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="lg:col-span-1">
+        <!-- Contact Form -->
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg p-6 sticky top-24">
+          <h3 class="text-xl font-bold mb-4 text-slate-900 dark:text-white">Interested in this property?</h3>
+          <form class="space-y-4">
+            <div>
+              <label for="name" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                Your Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                class="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-slate-800 dark:text-white"
+                placeholder="John Doe"
+              />
+            </div>
+
+            <div>
+              <label for="email" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                Email Address
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-slate-800 dark:text-white"
+                placeholder="john@example.com"
+              />
+            </div>
+
+            <div>
+              <label for="phone" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                Phone Number
+              </label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                class="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-slate-800 dark:text-white"
+                placeholder="(555) 123-4567"
+              />
+            </div>
+
+            <div>
+              <label for="message" class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                class="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-slate-800 dark:text-white"
+                placeholder="I'm interested in this property..."
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors flex items-center justify-center"
+            >
+              <Icon name="tabler:send" class="w-5 h-5 mr-2" />
+              Send Inquiry
+            </button>
+          </form>
+
+          <!-- Contact Info -->
+          <div class="mt-6 pt-6 border-t border-slate-200 dark:border-slate-700">
+            <h4 class="font-semibold text-slate-900 dark:text-white mb-3">Contact Information</h4>
+            <div class="space-y-2 text-sm">
+              <div class="flex items-center text-slate-600 dark:text-slate-400">
+                <Icon name="tabler:phone" class="w-4 h-4 mr-2" />
+                <span>(555) 123-4567</span>
+              </div>
+              <div class="flex items-center text-slate-600 dark:text-slate-400">
+                <Icon name="tabler:mail" class="w-4 h-4 mr-2" />
+                <span>agent@realestate.com</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</Layout>

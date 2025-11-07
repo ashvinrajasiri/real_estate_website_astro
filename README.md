@@ -1,16 +1,45 @@
 # Real Estate Website - Astro
 
-A modern real estate property listing website built with **AstroWind** template, featuring Astro 5 and Tailwind CSS.
+A modern real estate property listing website built with **AstroWind** template, featuring Astro 5, Tailwind CSS, and **Sanity CMS** for easy property management.
 
 ## Features
 
+- **Sanity CMS Integration** - Manage properties through a user-friendly admin interface (no code required!)
 - **18 Property Listings** - Apartments, villas, offices, shops, houses, and warehouses
+- **Mortgage Calculator** - Interactive calculator for properties for sale
 - **Production-Ready Performance** - Built on AstroWind's optimized foundation
 - **Dark Mode Support** - Automatic theme switching
 - **SEO Optimized** - Meta tags, sitemaps, and Open Graph support
 - **Responsive Design** - Mobile-first approach
 - **Type-Safe** - Full TypeScript support with strict mode
 - **Blog Ready** - Content collections for articles and updates
+
+## 🚀 NEW: Sanity CMS Setup
+
+This project is now configured for **Sanity CMS** - a modern headless CMS that lets you manage property listings without touching code!
+
+### Quick Start with Sanity
+
+1. **Read the setup guide**: Open `NEXT_STEPS.md` for step-by-step instructions
+2. **Total setup time**: ~20 minutes
+3. **What you'll get**: A visual admin interface to manage properties
+
+### Documentation
+
+- **📋 NEXT_STEPS.md** - Start here! Complete setup instructions
+- **📘 SANITY_SETUP.md** - Detailed technical guide
+- **👥 USER_GUIDE.md** - Simple guide for non-technical users
+- **📊 SANITY_SUMMARY.md** - Overview of what's been set up
+
+### Benefits
+
+- ✅ **No code changes** needed to add/edit/delete properties
+- ✅ **Visual interface** - user-friendly admin panel
+- ✅ **Free tier** - 20 users, 10K documents, 1M API requests/month
+- ✅ **Automatic rebuilds** - via webhooks (when deployed to Vercel)
+- ✅ **Image optimization** - built-in CDN
+
+**Status**: 90% configured - you just need to create a Sanity account and complete the setup!
 
 ## Quick Start
 
@@ -105,11 +134,17 @@ Modify `src/navigation.ts` to update:
 ## Commands
 
 ```bash
+# Astro
 npm run dev          # Start dev server
 npm run build        # Build for production
 npm run preview      # Preview production build
 npm run check        # Run all checks (Astro, ESLint, Prettier)
 npm run fix          # Auto-fix ESLint and Prettier issues
+
+# Sanity CMS
+npm run sanity       # Run Sanity Studio locally (http://localhost:3333)
+npm run sanity:deploy # Deploy Sanity Studio to Sanity hosting
+npm run sanity:build  # Build Sanity Studio
 ```
 
 ## Based On

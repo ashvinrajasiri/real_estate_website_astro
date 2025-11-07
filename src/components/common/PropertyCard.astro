@@ -1,0 +1,107 @@
+---
+import type { Property } from '~/types/property';
+import { Icon } from 'astro-icon/components';
+import Image from '~/components/common/Image.astro';
+
+interface Props {
+  property: Property;
+}
+
+const { property } = Astro.props;
+
+// Get property type badge color
+const getBadgeColor = (status: string) => {
+  return status.toLowerCase() === 'rent'
+    ? 'bg-blue-600 text-white'
+    : 'bg-green-600 text-white';
+};
+---
+
+<article class="group relative overflow-hidden rounded-lg bg-white dark:bg-slate-900 shadow-lg hover:shadow-xl transition-all duration-300" data-property-card data-property-type={property.status.toLowerCase()} data-property-category={property.category} data-property-price={property.property_price.replace(/[^0-9]/g, '')} data-property-beds={property.beds}>
+  <!-- Image -->
+  <a href={`/properties/${property.slug}`} class="block relative overflow-hidden aspect-[4/3]">
+    <Image
+      src={property.property_img}
+      alt={property.property_title}
+      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+      width={800}
+      height={600}
+      widths={[400, 768]}
+      sizes="(max-width: 767px) 400px, 768px"
+      loading="lazy"
+      decoding="async"
+    />
+
+    <!-- Status Badge -->
+    <div class="absolute top-4 left-4">
+      <span class={`px-3 py-1 rounded-full text-sm font-semibold ${getBadgeColor(property.status)}`}>
+        For {property.status === 'Rent' ? 'Rent' : 'Sale'}
+      </span>
+    </div>
+
+    <!-- Category Badge -->
+    <div class="absolute top-4 right-4">
+      <span class="px-3 py-1 rounded-full text-sm font-semibold bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white">
+        {property.category.charAt(0).toUpperCase() + property.category.slice(1)}
+      </span>
+    </div>
+
+    <!-- Price Overlay -->
+    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+      <p class="text-white font-bold text-2xl">
+        {property.property_price}
+        {property.status === 'Rent' && <span class="text-sm font-normal">/month</span>}
+      </p>
+    </div>
+  </a>
+
+  <!-- Content -->
+  <div class="p-5">
+    <!-- Title -->
+    <a href={`/properties/${property.slug}`} class="block mb-2">
+      <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-1">
+        {property.property_title}
+      </h3>
+    </a>
+
+    <!-- Location -->
+    <div class="flex items-center text-slate-600 dark:text-slate-400 mb-4">
+      <Icon name="tabler:map-pin" class="w-4 h-4 mr-1" />
+      <p class="text-sm line-clamp-1">{property.location}</p>
+    </div>
+
+    <!-- Property Details -->
+    <div class="flex items-center justify-between text-slate-700 dark:text-slate-300 pb-4 border-b border-slate-200 dark:border-slate-700">
+      <div class="flex items-center space-x-1">
+        <Icon name="tabler:bed" class="w-5 h-5" />
+        <span class="text-sm font-medium">{property.beds}</span>
+      </div>
+      <div class="flex items-center space-x-1">
+        <Icon name="tabler:bath" class="w-5 h-5" />
+        <span class="text-sm font-medium">{property.bathrooms}</span>
+      </div>
+      <div class="flex items-center space-x-1">
+        <Icon name="tabler:car-garage" class="w-5 h-5" />
+        <span class="text-sm font-medium">{property.garages}</span>
+      </div>
+      <div class="flex items-center space-x-1">
+        <Icon name="tabler:ruler-2" class="w-5 h-5" />
+        <span class="text-sm font-medium">{property.livingArea}</span>
+      </div>
+    </div>
+
+    <!-- Region & Action -->
+    <div class="flex items-center justify-between mt-4">
+      <span class="text-sm text-slate-500 dark:text-slate-400 capitalize">
+        {property.region}
+      </span>
+      <a
+        href={`/properties/${property.slug}`}
+        class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 text-sm font-semibold group/link"
+      >
+        View Details
+        <Icon name="tabler:arrow-right" class="w-4 h-4 ml-1 group-hover/link:translate-x-1 transition-transform" />
+      </a>
+    </div>
+  </div>
+</article>

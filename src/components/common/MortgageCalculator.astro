@@ -1,0 +1,331 @@
+---
+interface Props {
+  propertyPrice: number;
+}
+
+const { propertyPrice } = Astro.props;
+
+// Default values
+const defaultDownPayment = 20; // 20%
+const defaultInterestRate = 5.5; // 5.5%
+const defaultAmortization = 25; // 25 years
+const defaultPropertyTaxRate = 1.0; // 1% annually for GTA
+---
+
+<div class="bg-blue-50 dark:bg-slate-800 rounded-lg p-5 lg:p-6">
+  <h2 class="text-xl font-bold mb-1 text-slate-900 dark:text-white">Mortgage Calculator</h2>
+  <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">Estimate your monthly payments</p>
+
+  <div class="space-y-4">
+    <!-- Property Price -->
+    <div class="flex justify-between items-center pb-4 border-b border-slate-300 dark:border-slate-600">
+      <span class="text-sm font-medium text-slate-700 dark:text-slate-300">
+        Property Price
+      </span>
+      <span class="text-xl font-bold text-blue-600 dark:text-blue-400">
+        ${propertyPrice.toLocaleString()}
+      </span>
+    </div>
+
+    <!-- Down Payment -->
+    <div>
+      <div class="flex justify-between items-center mb-2">
+        <label class="flex items-center gap-1 text-sm font-medium text-slate-700 dark:text-slate-300">
+          Down Payment
+          <div class="relative inline-block tooltip-container">
+            <svg class="w-4 h-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <div class="tooltip">
+              The upfront amount you pay towards the property purchase.<br><br>
+              Minimum requirements in Canada:<br>
+              • Under $500k: 5% down<br>
+              • $500k - $1M: 15% down<br>
+              • Over $1M: 20% down<br><br>
+              A larger down payment means lower monthly payments.
+            </div>
+          </div>
+        </label>
+        <span id="downPaymentDisplay" class="text-sm font-semibold text-blue-600 dark:text-blue-400">
+          {defaultDownPayment}% (${ (propertyPrice * defaultDownPayment / 100).toLocaleString() })
+        </span>
+      </div>
+      <input
+        type="range"
+        id="downPayment"
+        min="5"
+        max="50"
+        step="5"
+        value={defaultDownPayment}
+        class="w-full h-2 bg-slate-300 rounded-lg appearance-none cursor-pointer dark:bg-slate-600"
+      />
+      <div class="flex justify-between text-xs text-slate-500 dark:text-slate-400 mt-1">
+        <span>5%</span>
+        <span>50%</span>
+      </div>
+    </div>
+
+    <!-- Interest Rate -->
+    <div>
+      <div class="flex justify-between items-center mb-2">
+        <label class="flex items-center gap-1 text-sm font-medium text-slate-700 dark:text-slate-300">
+          Interest Rate
+          <div class="relative inline-block tooltip-container">
+            <svg class="w-4 h-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <div class="tooltip">
+              The annual percentage charged by the lender on your mortgage. This rate determines how much you'll pay in interest over the life of the loan. Lower rates mean lower monthly payments.
+            </div>
+          </div>
+        </label>
+        <span id="interestRateDisplay" class="text-sm font-semibold text-blue-600 dark:text-blue-400">
+          {defaultInterestRate}%
+        </span>
+      </div>
+      <input
+        type="range"
+        id="interestRate"
+        min="2.0"
+        max="10.0"
+        step="0.1"
+        value={defaultInterestRate}
+        class="w-full h-2 bg-slate-300 rounded-lg appearance-none cursor-pointer dark:bg-slate-600"
+      />
+      <div class="flex justify-between text-xs text-slate-500 dark:text-slate-400 mt-1">
+        <span>2.0%</span>
+        <span>10.0%</span>
+      </div>
+    </div>
+
+    <!-- Amortization Period -->
+    <div>
+      <div class="flex justify-between items-center mb-2">
+        <label class="flex items-center gap-1 text-sm font-medium text-slate-700 dark:text-slate-300">
+          Amortization Period
+          <div class="relative inline-block tooltip-container">
+            <svg class="w-4 h-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <div class="tooltip">
+              The total length of time it will take to pay off your mortgage completely. Common periods in Canada are 25 or 30 years. A shorter period means higher monthly payments but less interest paid overall.
+            </div>
+          </div>
+        </label>
+        <span id="amortizationDisplay" class="text-sm font-semibold text-blue-600 dark:text-blue-400">
+          {defaultAmortization} years
+        </span>
+      </div>
+      <input
+        type="range"
+        id="amortization"
+        min="5"
+        max="30"
+        step="5"
+        value={defaultAmortization}
+        class="w-full h-2 bg-slate-300 rounded-lg appearance-none cursor-pointer dark:bg-slate-600"
+      />
+      <div class="flex justify-between text-xs text-slate-500 dark:text-slate-400 mt-1">
+        <span>5 years</span>
+        <span>30 years</span>
+      </div>
+    </div>
+
+    <!-- Calculation Results -->
+    <div class="border-t border-slate-300 dark:border-slate-600 pt-4 mt-4">
+      <div class="space-y-2">
+        <div class="flex justify-between items-center">
+          <span class="text-slate-600 dark:text-slate-400">Mortgage Amount:</span>
+          <span id="mortgageAmount" class="font-semibold text-slate-900 dark:text-white">
+            ${((propertyPrice * (100 - defaultDownPayment) / 100)).toLocaleString()}
+          </span>
+        </div>
+
+        <div class="flex justify-between items-center">
+          <span class="text-slate-600 dark:text-slate-400">Monthly Mortgage:</span>
+          <span id="monthlyMortgage" class="font-semibold text-slate-900 dark:text-white">
+            $0
+          </span>
+        </div>
+
+        <div class="flex justify-between items-center">
+          <span class="flex items-center gap-1 text-slate-600 dark:text-slate-400">
+            Monthly Property Tax
+            <div class="relative inline-block tooltip-container">
+              <svg class="w-4 h-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 cursor-help" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div class="tooltip">
+                Municipal taxes you pay annually to your local government. This estimate assumes approximately 1% of property value per year for the GTA. Actual rates vary by municipality.
+              </div>
+            </div>
+          </span>
+          <span id="monthlyPropertyTax" class="font-semibold text-slate-900 dark:text-white">
+            ${Math.round(propertyPrice * defaultPropertyTaxRate / 100 / 12).toLocaleString()}
+          </span>
+        </div>
+
+        <div class="border-t border-slate-300 dark:border-slate-600 pt-2 mt-2">
+          <div class="flex justify-between items-center">
+            <span class="text-base font-semibold text-slate-900 dark:text-white">Total Monthly Cost:</span>
+            <span id="totalMonthlyCost" class="text-xl font-bold text-blue-600 dark:text-blue-400">
+              $0
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <p class="text-xs text-slate-500 dark:text-slate-400 mt-3">
+        * This is an estimate. Property tax rate assumes approximately 1% annually for the GTA. Actual rates may vary by municipality.
+      </p>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ propertyPrice }}>
+  function initMortgageCalculator() {
+    const downPaymentSlider = document.getElementById('downPayment');
+    const interestRateSlider = document.getElementById('interestRate');
+    const amortizationSlider = document.getElementById('amortization');
+
+    const downPaymentDisplay = document.getElementById('downPaymentDisplay');
+    const interestRateDisplay = document.getElementById('interestRateDisplay');
+    const amortizationDisplay = document.getElementById('amortizationDisplay');
+
+    const mortgageAmountEl = document.getElementById('mortgageAmount');
+    const monthlyMortgageEl = document.getElementById('monthlyMortgage');
+    const monthlyPropertyTaxEl = document.getElementById('monthlyPropertyTax');
+    const totalMonthlyCostEl = document.getElementById('totalMonthlyCost');
+
+    function calculateMortgage() {
+      const downPaymentPercent = parseFloat(downPaymentSlider.value);
+      const interestRate = parseFloat(interestRateSlider.value);
+      const amortizationYears = parseInt(amortizationSlider.value);
+
+      // Calculate mortgage amount
+      const downPaymentAmount = propertyPrice * (downPaymentPercent / 100);
+      const mortgageAmount = propertyPrice - downPaymentAmount;
+
+      // Calculate monthly mortgage payment
+      // Formula: M = P [ i(1 + i)^n ] / [ (1 + i)^n - 1 ]
+      const monthlyRate = interestRate / 100 / 12;
+      const numberOfPayments = amortizationYears * 12;
+
+      let monthlyMortgage = 0;
+      if (monthlyRate === 0) {
+        monthlyMortgage = mortgageAmount / numberOfPayments;
+      } else {
+        monthlyMortgage = mortgageAmount * (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments)) /
+                         (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
+      }
+
+      // Calculate property tax (1% annually for GTA estimate)
+      const annualPropertyTax = propertyPrice * 0.01;
+      const monthlyPropertyTax = annualPropertyTax / 12;
+
+      // Total monthly cost
+      const totalMonthlyCost = monthlyMortgage + monthlyPropertyTax;
+
+      // Update displays
+      downPaymentDisplay.textContent = `${downPaymentPercent}% ($${downPaymentAmount.toLocaleString('en-US', {maximumFractionDigits: 0})})`;
+      interestRateDisplay.textContent = `${interestRate}%`;
+      amortizationDisplay.textContent = `${amortizationYears} years`;
+
+      mortgageAmountEl.textContent = `$${mortgageAmount.toLocaleString('en-US', {maximumFractionDigits: 0})}`;
+      monthlyMortgageEl.textContent = `$${Math.round(monthlyMortgage).toLocaleString('en-US')}`;
+      monthlyPropertyTaxEl.textContent = `$${Math.round(monthlyPropertyTax).toLocaleString('en-US')}`;
+      totalMonthlyCostEl.textContent = `$${Math.round(totalMonthlyCost).toLocaleString('en-US')}`;
+    }
+
+    // Add event listeners
+    downPaymentSlider.addEventListener('input', calculateMortgage);
+    interestRateSlider.addEventListener('input', calculateMortgage);
+    amortizationSlider.addEventListener('input', calculateMortgage);
+
+    // Initial calculation
+    calculateMortgage();
+  }
+
+  // Initialize on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMortgageCalculator);
+  } else {
+    initMortgageCalculator();
+  }
+
+  // Re-initialize for Astro view transitions
+  document.addEventListener('astro:page-load', initMortgageCalculator);
+</script>
+
+<style>
+  /* Custom slider styling */
+  input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #2563eb;
+    cursor: pointer;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #2563eb;
+    cursor: pointer;
+    border: none;
+  }
+
+  /* Tooltip styling */
+  .tooltip-container {
+    position: relative;
+  }
+
+  .tooltip {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 8px;
+    width: 280px;
+    background-color: rgba(15, 23, 42, 0.95);
+    color: white;
+    text-align: left;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    z-index: 100;
+    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: rgba(15, 23, 42, 0.95) transparent transparent transparent;
+  }
+
+  .tooltip-container:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  /* Dark mode adjustments */
+  :global(.dark) .tooltip {
+    background-color: rgba(248, 250, 252, 0.95);
+    color: #0f172a;
+  }
+
+  :global(.dark) .tooltip::after {
+    border-color: rgba(248, 250, 252, 0.95) transparent transparent transparent;
+  }
+</style>

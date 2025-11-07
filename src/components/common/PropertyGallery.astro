@@ -1,0 +1,69 @@
+---
+import Image from '~/components/common/Image.astro';
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  images: string[];
+  title: string;
+}
+
+const { images, title } = Astro.props;
+const mainImage = images[0];
+const thumbnails = images.slice(1, 5); // Show up to 4 thumbnails
+---
+
+<div class="property-gallery">
+  <!-- Main Image -->
+  <div class="relative mb-4 rounded-lg overflow-hidden aspect-[16/10] bg-slate-200 dark:bg-slate-800">
+    <Image
+      src={mainImage}
+      alt={`${title} - Main view`}
+      class="w-full h-full object-cover"
+      width={1280}
+      height={800}
+      widths={[400, 768, 1024, 1280]}
+      sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, 1280px"
+      loading="eager"
+    />
+
+    <!-- Image Counter Badge -->
+    <div class="absolute bottom-4 right-4 bg-black/70 text-white px-3 py-2 rounded-lg flex items-center space-x-2">
+      <Icon name="tabler:photo" class="w-5 h-5" />
+      <span class="text-sm font-medium">{images.length} Photos</span>
+    </div>
+  </div>
+
+  <!-- Thumbnail Grid -->
+  {thumbnails.length > 0 && (
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      {thumbnails.map((image, index) => (
+        <div class="relative rounded-lg overflow-hidden aspect-[4/3] bg-slate-200 dark:bg-slate-800 cursor-pointer hover:opacity-75 transition-opacity">
+          <Image
+            src={image}
+            alt={`${title} - View ${index + 2}`}
+            class="w-full h-full object-cover"
+            width={400}
+            height={300}
+            widths={[200, 400]}
+            sizes="(max-width: 767px) 200px, 400px"
+            loading="lazy"
+          />
+          {index === 3 && images.length > 5 && (
+            <div class="absolute inset-0 bg-black/60 flex items-center justify-center text-white">
+              <div class="text-center">
+                <Icon name="tabler:plus" class="w-8 h-8 mx-auto mb-1" />
+                <span class="text-sm font-semibold">+{images.length - 5} More</span>
+              </div>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  )}
+</div>
+
+<style>
+  .property-gallery {
+    /* Additional custom styles if needed */
+  }
+</style>
