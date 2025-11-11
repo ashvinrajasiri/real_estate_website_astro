@@ -4,7 +4,8 @@ export interface Property {
   gallery_images?: string[];
   property_title: string;
   property_price: string;
-  category: 'apartment' | 'villa' | 'office' | 'shop' | 'house' | 'warehouse';
+  description?: string;
+  category: 'apartment' | 'house';
   category_img: string;
   rooms: number;
   bathrooms: number;

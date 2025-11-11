@@ -39,6 +39,7 @@ export interface SanityProperty {
     };
   }>;
   property_price: string;
+  description?: string;
   category: string;
   status: string;
   beds: number;
@@ -65,6 +66,7 @@ export function transformSanityProperty(sanityProperty: SanityProperty) {
     property_img: urlFor(sanityProperty.property_img).url(),
     gallery_images: galleryImages.map((img) => urlFor(img).url()),
     property_price: sanityProperty.property_price,
+    description: sanityProperty.description,
     category: sanityProperty.category,
     status: sanityProperty.status,
     beds: sanityProperty.beds,
