@@ -56,17 +56,20 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'description',
+      title: 'Property Description',
+      type: 'text',
+      description: 'Custom property description (paste from MLS listing). Leave blank to use auto-generated text.',
+      rows: 8,
+    }),
+    defineField({
       name: 'category',
       title: 'Category',
       type: 'string',
       options: {
         list: [
-          { title: 'Apartment', value: 'apartment' },
-          { title: 'Villa', value: 'villa' },
-          { title: 'Office', value: 'office' },
-          { title: 'Shop', value: 'shop' },
           { title: 'House', value: 'house' },
-          { title: 'Warehouse', value: 'warehouse' },
+          { title: 'Apartment', value: 'apartment' },
         ],
       },
       validation: (Rule) => Rule.required(),

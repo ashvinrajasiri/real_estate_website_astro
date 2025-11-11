@@ -8,6 +8,7 @@ import Testimonials from '~/components/widgets/Testimonials.astro';
 import Stats from '~/components/widgets/Stats.astro';
 import PropertyCard from '~/components/common/PropertyCard.astro';
 import { getAllProperties } from '~/utils/sanity';
+import { getTestimonials } from '~/utils/googleReviews';
 
 const metadata = {
   title: 'Find Your Dream Home - Professional Real Estate Services',
@@ -16,6 +17,9 @@ const metadata = {
 
 // Get all properties from Sanity
 const properties = await getAllProperties();
+
+// Get testimonials from Google Reviews
+const testimonials = await getTestimonials();
 
 // Get featured properties (first 6)
 const featuredProperties = properties.slice(0, 6);
@@ -181,35 +185,7 @@ const featuredProperties = properties.slice(0, 6);
     title="What My Clients Say"
     subtitle="Real feedback from satisfied homebuyers and sellers"
     tagline="Testimonials"
-    testimonials={[
-      {
-        testimonial: `Working with this agent was an absolute pleasure! They helped us find our dream home and made the entire process smooth and stress-free. Their market knowledge and negotiation skills saved us thousands.`,
-        name: 'Sarah Johnson',
-        job: 'Homebuyer',
-        image: {
-          src: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
-          alt: 'Sarah Johnson',
-        },
-      },
-      {
-        testimonial: `As first-time homebuyers, we had a lot of questions. Our agent patiently guided us through every step, explaining everything clearly. We couldn't have asked for a better experience!`,
-        name: 'Michael Chen',
-        job: 'First-Time Buyer',
-        image: {
-          src: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
-          alt: 'Michael Chen',
-        },
-      },
-      {
-        testimonial: `I needed to sell my home quickly due to relocation. My agent's marketing strategy and pricing expertise resulted in multiple offers within days. Highly recommend!`,
-        name: 'Emily Rodriguez',
-        job: 'Home Seller',
-        image: {
-          src: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
-          alt: 'Emily Rodriguez',
-        },
-      },
-    ]}
+    testimonials={testimonials}
   />
 
   <!-- Call to Action -->
