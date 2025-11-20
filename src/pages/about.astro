@@ -8,64 +8,17 @@ import CallToAction from '~/components/widgets/CallToAction.astro';
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
-  title: 'About Me - Your Trusted Real Estate Professional',
+  title: 'About Rajasiri Sinnarajah - GTA Real Estate Agent for First-Time Buyers & Families',
+  description: 'Five years helping first-time buyers and growing families find homes in the GTA. No pressure, just straight talk about what you can afford and where you should look.',
 };
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero Section -->
-  <Hero
-    tagline="About Me"
-    image={{
-      src: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Real Estate Professional',
-    }}
-  >
-    <Fragment slot="title">
-      Your Trusted Real Estate Partner <br />
-      <span class="text-accent dark:text-white">With Over a Decade of Experience</span>
-    </Fragment>
-
-    <Fragment slot="subtitle">
-      I'm dedicated to helping you find your dream home or successfully sell your property. With extensive local market
-      knowledge, proven negotiation skills, and a commitment to personalized service, I guide you through every step of
-      your real estate journey.
-    </Fragment>
-  </Hero>
-
-  <!-- Stats Section -->
-  <Stats
-    title="Track Record of Success"
-    stats={[
-      { title: 'Properties Sold', amount: '200+' },
-      { title: 'Happy Clients', amount: '150+' },
-      { title: 'Years Experience', amount: '10+' },
-      { title: 'Average Rating', amount: '4.9/5' },
-    ]}
-  />
-
-  <!-- About Content -->
+  <!-- My Story -->
   <Content
     isReversed
     tagline="My Story"
-    title="A Passion for Real Estate"
-    items={[
-      {
-        title: 'Licensed Professional',
-        description:
-          'Fully licensed real estate professional with active memberships in the National Association of Realtors and local real estate boards.',
-      },
-      {
-        title: 'Local Expert',
-        description:
-          'Born and raised in the area, I have deep knowledge of local neighborhoods, schools, amenities, and market trends.',
-      },
-      {
-        title: 'Client-Focused',
-        description:
-          'Your goals are my priority. I take time to understand your unique needs and work tirelessly to exceed your expectations.',
-      },
-    ]}
+    title="From Buyer to Agent"
     image={{
       src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
       alt: 'Professional real estate agent',
@@ -73,10 +26,17 @@ const metadata = {
   >
     <Fragment slot="content">
       <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
-        Building Relationships, Not Just Transactions
+        I Got Into Real Estate Because I Lived It
       </h3>
-      My journey in real estate began over a decade ago, driven by a passion for helping people find their perfect home.
-      Since then, I've helped hundreds of families buy, sell, and invest in properties, building lasting relationships along the way.
+      <p class="mb-4">
+        Five years ago, I was working in a technical role and went through buying my first place in the GTA. The agent showed me properties but never explained why one neighborhood cost $150k more than another, what I could actually negotiate, or how to think about commute versus square footage. I figured it out on my own and thought: someone should actually teach people this stuff.
+      </p>
+      <p class="mb-4">
+        Now I work mostly with first-time buyers trying to break into the market and families outgrowing their current space. A lot of first-time buyers tell me they feel like they are already behind—watching prices climb while they save for a down payment. Families are trying to time selling and buying without ending up in their parents basement for three months.
+      </p>
+      <p>
+        I walk people through the actual numbers, show them neighborhoods they had not thought about, and never push them to buy before they are ready. My background taught me to solve problems methodically, and that is how I approach real estate—break it down, explain the options, help you make the call that works for your life.
+      </p>
     </Fragment>
 
     <Fragment slot="bg">
@@ -84,134 +44,73 @@ const metadata = {
     </Fragment>
   </Content>
 
-  <!-- Core Values -->
-  <Steps2
-    title="My Core Values"
-    subtitle="These principles guide every interaction and transaction, ensuring you receive the highest level of service and professionalism."
-    items={[
-      {
-        title: 'Integrity',
-        description:
-          'Honesty and transparency in all communications. You can trust that I always have your best interests at heart.',
-      },
-      {
-        title: 'Expertise',
-        description:
-          'Continuous education and market research to provide you with the most accurate and up-to-date information.',
-      },
-      {
-        title: 'Dedication',
-        description:
-          'Available when you need me, responsive to your questions, and committed to achieving your real estate goals.',
-      },
-    ]}
-  />
-
-  <!-- Professional Qualifications -->
+  <!-- What You Get -->
   <Features
     id="qualifications"
-    tagline="Qualifications"
-    title="Professional Credentials"
-    subtitle="Education and certifications that ensure you receive expert guidance"
+    tagline="Working Together"
+    title="What You Can Expect"
+    subtitle="The practical stuff that matters when you are buying or selling in the GTA"
     items={[
       {
-        title: 'Licensed Real Estate Broker',
+        title: 'Straight Talk About Pricing',
         description:
-          'Active real estate license with continuing education in market analysis, negotiation, and property law.',
-        icon: 'tabler:certificate',
-      },
-      {
-        title: 'NAR Member',
-        description:
-          'Member of the National Association of Realtors, adhering to the highest ethical standards in the industry.',
-        icon: 'tabler:award',
-      },
-      {
-        title: 'Certified Negotiation Expert',
-        description:
-          'Advanced training in real estate negotiation strategies to get you the best possible deal.',
-        icon: 'tabler:briefcase',
-      },
-      {
-        title: 'Market Specialist',
-        description:
-          'Deep expertise in local market conditions, pricing strategies, and neighborhood trends.',
+          'I will tell you what a place is actually worth, not what the listing says. If something is overpriced, you will know. If it is a steal, we move fast.',
         icon: 'tabler:chart-line',
       },
       {
-        title: 'First-Time Buyer Specialist',
+        title: 'First-Timer Friendly',
         description:
-          'Specialized training to guide first-time homebuyers through the entire purchasing process.',
+          'Never bought before? I will explain every step without the jargon. Offers, inspections, lawyers, closing—all of it. No question is too basic.',
         icon: 'tabler:home-heart',
       },
       {
-        title: 'Investment Property Expert',
+        title: 'Timing Coordination for Sellers',
         description:
-          'Knowledge of investment strategies, rental markets, and property management best practices.',
-        icon: 'tabler:building-bank',
+          'Selling and buying at the same time is a logistical nightmare. I help you stage while living there, coordinate closing dates, and avoid being stuck between places.',
+        icon: 'tabler:calendar',
+      },
+      {
+        title: 'Negotiation Without the Drama',
+        description:
+          'I negotiate every deal hard but keep it professional. The goal is to get you the best terms, not to win a fight. You want the house, not a grudge match.',
+        icon: 'tabler:briefcase',
+      },
+      {
+        title: 'Responsive Communication',
+        description:
+          'When you text me about a new listing at 9 PM, I will respond. When you need to see a place this weekend, I will make it happen.',
+        icon: 'tabler:phone',
+      },
+      {
+        title: 'Network of Pros',
+        description:
+          'I know good inspectors who will not scare you unnecessarily, mortgage brokers who return calls, and lawyers who actually explain things. I will connect you.',
+        icon: 'tabler:users',
       },
     ]}
   />
-
-  <!-- Community Involvement -->
-  <Content
-    isAfterContent
-    items={[
-      {
-        title: 'Local Community Leader',
-        description:
-          'Active involvement in local community organizations, neighborhood associations, and charitable causes.',
-      },
-      {
-        title: 'Market Contributor',
-        description:
-          'Regular contributor to local real estate publications and market analysis reports.',
-      },
-      {
-        title: 'Mentorship',
-        description:
-          'Mentor to new real estate professionals, sharing knowledge and best practices.',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Community engagement',
-    }}
-  >
-    <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
-        Committed to Our Community
-      </h3>
-      Beyond real estate, I'm deeply involved in our local community. I believe in giving back and helping our
-      neighborhoods thrive.
-    </Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
 
   <!-- Call to Action -->
   <CallToAction
     actions={[
       {
         variant: 'primary',
-        text: 'Schedule a Consultation',
+        text: 'Let\'s Talk',
         href: '/contact',
-        icon: 'tabler:calendar',
+        icon: 'tabler:message',
       },
       {
         variant: 'secondary',
-        text: 'View Properties',
+        text: 'Browse Properties',
         href: '/properties',
       },
     ]}
   >
-    <Fragment slot="title">Ready to Work Together?</Fragment>
+    <Fragment slot="title">Want to Chat About Your Situation?</Fragment>
 
     <Fragment slot="subtitle">
-      Whether you're buying your first home, selling your property, or looking for investment opportunities,
-      <br class="hidden md:inline" />I'm here to help you achieve your real estate goals. Let's start the conversation today.
+      Not sure if you are ready to buy? Wondering what your place might sell for? Just have questions?
+      <br class="hidden md:inline" />Reach out. No pressure, no sales pitch—just a conversation about what makes sense for you.
     </Fragment>
   </CallToAction>
 </Layout>

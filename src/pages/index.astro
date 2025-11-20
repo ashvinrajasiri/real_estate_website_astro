@@ -5,13 +5,15 @@ import Features from '~/components/widgets/Features.astro';
 import Content from '~/components/widgets/Content.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
-import Stats from '~/components/widgets/Stats.astro';
+import FAQAccordion from '~/components/widgets/FAQAccordion.astro';
 import PropertyCard from '~/components/common/PropertyCard.astro';
 import { getAllProperties } from '~/utils/sanity';
 import { getTestimonials } from '~/utils/googleReviews';
+import heroImage from '~/assets/images/hero-image.png';
 
 const metadata = {
-  title: 'Find Your Dream Home - Professional Real Estate Services',
+  title: 'Find Your Dream Home in the Greater Toronto Area | Rajasiri Sinnarajah',
+  description: 'Five years helping first-time buyers and growing families find homes in the GTA. No pressure, just straight talk about what you can afford and where you should look.',
   ignoreTitleTemplate: true,
 };
 
@@ -32,25 +34,78 @@ const featuredProperties = properties.slice(0, 6);
     actions={[
       {
         variant: 'primary',
-        text: 'View Properties',
-        href: '/properties',
-        icon: 'tabler:home-search',
+        text: 'Book a Free Consultation',
+        href: '/contact',
+        icon: 'tabler:calendar',
       },
-      { text: 'Contact Me', href: '/contact' },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80',
-      alt: 'Beautiful home exterior'
+      src: heroImage,
+      alt: 'Rajasiri Sinnarajah - GTA Real Estate Agent'
     }}
   >
     <Fragment slot="title">
-      Find Your <span class="text-accent dark:text-white">Dream Home</span> in the Greater Toronto Area
+      Break Into the GTA Market <span class="text-accent dark:text-white">Without Overpaying</span>
     </Fragment>
 
     <Fragment slot="subtitle">
-      Finding the perfect home for your family. Expert guidance with a personal touch every step of the way.
+      I help first-time buyers and growing families find a home within their budget in the right neighborhood.
     </Fragment>
   </Hero>
+
+  <!-- What You Can Expect Section -->
+  <Features
+    id="services"
+    tagline="What You Can Expect"
+    title="How I Work"
+    subtitle="No pressure, no jargon—just honest guidance through the process"
+    items={[
+      {
+        title: 'Straight Talk About Pricing',
+        description:
+          'I will tell you what a place is actually worth, not what the listing says. If something is overpriced or has issues that will affect resale, you will know.',
+        icon: 'tabler:chart-line',
+      },
+      {
+        title: 'First-Timer Friendly',
+        description:
+          'I have been through this myself. I know what it is like to not know what you do not know. I will explain the steps, the paperwork, and what to expect—without making you feel like you should already understand it.',
+        icon: 'tabler:home-heart',
+      },
+      {
+        title: 'Timing Coordination for Sellers',
+        description:
+          'Families are trying to time selling and buying without ending up in their parents basement for three months. I help coordinate closings and bridge the gap so you are not stuck between homes.',
+        icon: 'tabler:calendar-check',
+      },
+      {
+        title: 'Negotiation Without the Drama',
+        description:
+          'I am methodical and calm. I run the numbers, present the options, and help you decide what makes sense. No pressure tactics, no rushed decisions.',
+        icon: 'tabler:scale',
+      },
+      {
+        title: 'Responsive Communication',
+        description:
+          'I respond quickly to texts and emails. If you have a question at 9 PM because you just saw a listing, I will get back to you.',
+        icon: 'tabler:message-circle',
+      },
+      {
+        title: 'Network of Pros',
+        description:
+          'I know good inspectors, mortgage brokers, and contractors who will not upsell you. I can connect you with people who will give you straight answers.',
+        icon: 'tabler:users-group',
+      },
+    ]}
+  />
+
+  <!-- Testimonials Section -->
+  <Testimonials
+    title="What My Clients Say"
+    subtitle="Real feedback from satisfied homebuyers and sellers"
+    tagline="Testimonials"
+    testimonials={testimonials}
+  />
 
   <!-- Featured Properties Section -->
   <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-7xl" id="featured">
@@ -85,133 +140,59 @@ const featuredProperties = properties.slice(0, 6);
     </div>
   </section>
 
-  <!-- Services Section -->
-  <Features
-    id="services"
-    tagline="Services"
-    title="How I Can Help You"
-    subtitle="Comprehensive real estate services tailored to your unique needs"
+  <!-- FAQ Section -->
+  <FAQAccordion
+    title="Common Questions"
+    tagline="FAQ"
     items={[
       {
-        title: 'Buyer Representation',
-        description:
-          'Expert guidance through the home buying process, from property search to closing. I help you find the perfect home within your budget.',
-        icon: 'tabler:home-search',
+        title: 'How much do I need for a down payment?',
+        description: 'For first-time buyers in the GTA, the minimum is 5% on the first $500k and 10% on anything above that. So on a $700k home, you would need $45k. If you have less than 20% down, you will need mortgage insurance (CMHC). I can walk you through what that actually costs and connect you with mortgage brokers who will give you straight numbers.',
       },
       {
-        title: 'Seller Services',
-        description:
-          'Professional marketing, staging advice, and negotiation to get you the best price for your property in the shortest time.',
-        icon: 'tabler:building',
+        title: 'Should I wait for prices to drop?',
+        description: 'Nobody has a crystal ball, but here is what I tell people: if you can afford a place now and plan to stay for at least 5 years, waiting is usually just delaying your life. Prices might drop, or they might climb while you save. What matters more is buying something you can afford that makes sense for your situation.',
       },
       {
-        title: 'Market Analysis',
-        description:
-          'Detailed comparative market analysis to help you make informed decisions about pricing and market timing.',
-        icon: 'tabler:chart-line',
+        title: 'How long does it take to buy a home?',
+        description: 'From starting to look to getting keys, most buyers take 3-6 months. That includes figuring out your budget, getting pre-approved, viewing homes, making offers, and closing. If you are ready to move quickly and the market is slow, it can be faster. If you are picky or the market is competitive, it might take longer.',
       },
       {
-        title: 'Property Management',
-        description:
-          'Full-service rental property management including tenant screening, maintenance, and rent collection.',
-        icon: 'tabler:key',
+        title: 'What if I need to sell my current place first?',
+        description: 'This is the trickiest part for families upgrading. You can make your offer conditional on selling your place, but in a competitive market that makes it harder to win. The other option is a bridge loan, where you borrow against your current home to buy the next one, then pay it back when your place sells. I help coordinate the timing either way.',
       },
       {
-        title: 'Investment Consulting',
-        description:
-          'Strategic advice for real estate investors looking to build wealth through property investments.',
-        icon: 'tabler:cash',
+        title: 'Do you charge a fee?',
+        description: 'For buyers: No. The buyer agent commission is paid by the seller (it is already baked into the listing price). You do not pay me anything directly. For sellers: Yes, there is a commission when your home sells (typically around 5% total, split between your agent and the buyer agent). I will walk you through exactly what that covers and how it works.',
       },
       {
-        title: 'First-Time Buyers',
-        description:
-          'Specialized support for first-time homebuyers, including education about the process and financing options.',
-        icon: 'tabler:users',
+        title: 'What neighborhoods should I look at?',
+        description: 'That depends on your budget, commute, and what you need (schools, space, walkability). A lot of first-time buyers overlook neighborhoods that are 10 minutes farther out but $150k cheaper. I will show you what your money gets you in different areas and explain the trade-offs honestly.',
       },
     ]}
-  />
-
-  <!-- Why Choose Me Section -->
-  <Content
-    isReversed
-    tagline="Why Choose Me"
-    title="Your Trusted Real Estate Partner"
-    items={[
-      {
-        title: 'Local Market Expertise',
-        description:
-          'Deep knowledge of local neighborhoods, schools, amenities, and market trends to help you make the best decision.',
-      },
-      {
-        title: 'Proven Track Record',
-        description:
-          'Years of successful transactions and satisfied clients who trust me for their real estate needs.',
-      },
-      {
-        title: 'Personalized Service',
-        description:
-          'Every client is unique. I take the time to understand your specific needs and goals.',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Real estate professional',
-    }}
   >
-    <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
-        Experience That Makes a Difference
-      </h3>
-      Dedicated to providing exceptional service and results that exceed expectations
-    </Fragment>
-
     <Fragment slot="bg">
       <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
     </Fragment>
-  </Content>
-
-  <!-- Stats Section -->
-  <Stats
-    stats={[
-      { title: 'Properties Sold', amount: '200+' },
-      { title: 'Happy Clients', amount: '150+' },
-      { title: 'Years Experience', amount: '10+' },
-      { title: 'Average Rating', amount: '4.9/5' },
-    ]}
-  />
-
-  <!-- Testimonials Section -->
-  <Testimonials
-    title="What My Clients Say"
-    subtitle="Real feedback from satisfied homebuyers and sellers"
-    tagline="Testimonials"
-    testimonials={testimonials}
-  />
+  </FAQAccordion>
 
   <!-- Call to Action -->
   <CallToAction
     actions={[
       {
         variant: 'primary',
-        text: 'Schedule Consultation',
+        text: 'Book a Free Consultation',
         href: '/contact',
         icon: 'tabler:calendar',
-      },
-      {
-        variant: 'secondary',
-        text: 'Browse Properties',
-        href: '/properties',
       },
     ]}
   >
     <Fragment slot="title">
-      Ready to Make Your Move?
+      Ready to Get Started?
     </Fragment>
 
     <Fragment slot="subtitle">
-      Let's discuss your real estate goals and find the perfect property for you.
-      <br class="hidden md:inline" />
-      Schedule a free, no-obligation consultation today.
+      Let's talk about your situation and figure out the best next steps for you.
     </Fragment>
   </CallToAction>
 </Layout>
