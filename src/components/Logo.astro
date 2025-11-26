@@ -1,9 +1,13 @@
 ---
-import { SITE } from 'astrowind:config';
+import { Image } from 'astro:assets';
+import logoImage from '~/assets/images/logo.png';
 ---
 
-<span
-  class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white"
->
-  🚀 {SITE?.name}
-</span>
+<Image
+  src={logoImage}
+  alt="Your Real Estate Agent"
+  class="h-20 md:h-16 w-auto"
+  width={200}
+  height={50}
+  loading="eager"
+/>

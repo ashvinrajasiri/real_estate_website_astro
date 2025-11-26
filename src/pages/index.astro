@@ -1,6 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import Hero from '~/components/widgets/Hero.astro';
+import Header from '~/components/widgets/Header.astro';
+import Hero3 from '~/components/widgets/Hero3.astro';
 import Features from '~/components/widgets/Features.astro';
 import Content from '~/components/widgets/Content.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
@@ -9,7 +10,9 @@ import FAQAccordion from '~/components/widgets/FAQAccordion.astro';
 import PropertyCard from '~/components/common/PropertyCard.astro';
 import { getAllProperties } from '~/utils/sanity';
 import { getTestimonials } from '~/utils/googleReviews';
-import heroImage from '~/assets/images/hero-image.png';
+import { Image } from 'astro:assets';
+import heroImage from '~/assets/images/hero-image1.png';
+import { headerData } from '~/navigation';
 
 const metadata = {
   title: 'Find Your Dream Home in the Greater Toronto Area | Rajasiri Sinnarajah',
@@ -28,9 +31,9 @@ const featuredProperties = properties.slice(0, 6);
 ---
 
 <Layout metadata={metadata}>
+  <Header slot="header" {...headerData} isSticky showRssFeed showToggleTheme lightText />
   <!-- Hero Section -->
-  <Hero
-    isReversed={true}
+  <Hero3
     actions={[
       {
         variant: 'primary',
@@ -39,19 +42,27 @@ const featuredProperties = properties.slice(0, 6);
         icon: 'tabler:calendar',
       },
     ]}
-    image={{
-      src: heroImage,
-      alt: 'Rajasiri Sinnarajah - GTA Real Estate Agent'
-    }}
   >
     <Fragment slot="title">
-      Break Into the GTA Market <span class="text-accent dark:text-white">Without Overpaying</span>
+      Break Into the GTA Market <span class="text-white">Without Overpaying</span>
     </Fragment>
 
     <Fragment slot="subtitle">
       I help first-time buyers and growing families find a home within their budget in the right neighborhood.
     </Fragment>
-  </Hero>
+
+    <Fragment slot="bg">
+      <Image
+        src={heroImage}
+        alt="Family enjoying their new living room"
+        class="w-full h-full object-cover object-center"
+        widths={[400, 768, 1024, 1920, 2560]}
+        sizes="100vw"
+        loading="eager"
+        quality={90}
+      />
+    </Fragment>
+  </Hero3>
 
   <!-- What You Can Expect Section -->
   <Features

@@ -6,6 +6,10 @@ import Features2 from '~/components/widgets/Features2.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Layout from '~/layouts/PageLayout.astro';
+import howIWorkImage from '~/assets/images/how-i-work-with-you.png';
+import sellingImage from '~/assets/images/selling-image.png';
+import buyersImage from '~/assets/images/buyers-image.png';
+import servicesHeroImage from '~/assets/images/services-hero-image.png';
 
 const metadata = {
   title: 'Real Estate Services in the Greater Toronto Area | Rajasiri Sinnarajah',
@@ -20,7 +24,7 @@ const metadata = {
     subtitle="With 15+ years of experience serving the Greater Toronto Area, I provide expert guidance and personalized service throughout your real estate journey - from finding your dream home to selling your property at the best price."
     actions={[{ variant: 'primary', text: 'Schedule Free Consultation', href: '/contact', icon: 'tabler:calendar' }]}
     image={{
-      src: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80',
+      src: servicesHeroImage,
       alt: 'Real Estate Services in Greater Toronto Area',
     }}
   />
@@ -43,12 +47,6 @@ const metadata = {
         description:
           'Professional marketing and negotiation to sell your property quickly and for the best price.',
         icon: 'tabler:building',
-      },
-      {
-        title: 'Property Management',
-        description:
-          'Complete rental property management including tenant screening and maintenance coordination.',
-        icon: 'tabler:key',
       },
       {
         title: 'Market Analysis',
@@ -104,7 +102,7 @@ const metadata = {
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      src: buyersImage,
       alt: 'Home Buying Services',
     }}
   >
@@ -154,7 +152,7 @@ const metadata = {
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      src: sellingImage,
       alt: 'Home Selling Services',
     }}
   >
@@ -164,56 +162,6 @@ const metadata = {
       </h3>
       Selling your home shouldn't be stressful. With proven marketing strategies and expert negotiation skills,
       I'll help you sell faster and for the best possible price.
-    </Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
-
-  <!-- Property Management Services -->
-  <Content
-    id="rentals"
-    isReversed
-    tagline="For Landlords"
-    title="Hassle-Free Property Management"
-    items={[
-      {
-        title: 'Tenant Screening',
-        description:
-          'Thorough background checks, credit reports, and reference verification to find reliable tenants.',
-        icon: 'tabler:user-search',
-      },
-      {
-        title: 'Rent Collection',
-        description:
-          'Automated rent collection and accounting to ensure consistent cash flow and financial tracking.',
-        icon: 'tabler:receipt',
-      },
-      {
-        title: 'Maintenance Coordination',
-        description:
-          'Network of trusted contractors for repairs and maintenance, available 24/7 for emergencies.',
-        icon: 'tabler:tools',
-      },
-      {
-        title: 'Legal Compliance',
-        description:
-          'Ensure all leases and procedures comply with local, state, and federal housing regulations.',
-        icon: 'tabler:scale',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Property Management Services',
-    }}
-  >
-    <Fragment slot="content">
-      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
-        Protect Your Investment
-      </h3>
-      Let me handle the day-to-day management of your rental properties so you can enjoy the benefits of
-      real estate investment without the headaches.
     </Fragment>
 
     <Fragment slot="bg">
@@ -286,8 +234,8 @@ const metadata = {
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Working Process',
+      src: howIWorkImage,
+      alt: 'How I Work With You - Process Steps',
     }}
   />
 

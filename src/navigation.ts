@@ -40,7 +40,7 @@ export const headerData = {
       href: getPermalink('/contact'),
     },
   ],
-  actions: [{ text: 'Schedule Consultation', href: getPermalink('/contact') }],
+  actions: [{ text: 'Schedule Consultation', href: getPermalink('/contact'), variant: 'primary' }],
 };
 
 export const footerData = {

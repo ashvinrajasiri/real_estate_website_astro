@@ -69,7 +69,9 @@ import { UI } from 'astrowind:config';
         return;
       }
 
-      Observer.removeAnimationDelay();
+      if (typeof Observer !== 'undefined' && Observer.removeAnimationDelay) {
+        Observer.removeAnimationDelay();
+      }
 
       document.documentElement.classList.toggle('dark');
       localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
