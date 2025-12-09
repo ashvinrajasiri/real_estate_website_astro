@@ -17,7 +17,6 @@ export interface Property {
   type: 'Apartment' | 'House' | 'Commercial';
   beds: number;
   garages: number;
-  region: 'north' | 'south' | 'east' | 'west' | 'central';
   name: string;
   slug: string;
 }

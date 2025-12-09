@@ -39,9 +39,6 @@ export default defineType({
       of: [
         {
           type: 'image',
-          options: {
-            hotspot: true,
-          },
         },
       ],
       options: {
@@ -116,21 +113,6 @@ export default defineType({
       title: 'Location',
       type: 'string',
       description: 'City, Province',
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'region',
-      title: 'Region',
-      type: 'string',
-      options: {
-        list: [
-          { title: 'North', value: 'north' },
-          { title: 'South', value: 'south' },
-          { title: 'East', value: 'east' },
-          { title: 'West', value: 'west' },
-          { title: 'Central', value: 'central' },
-        ],
-      },
       validation: (Rule) => Rule.required(),
     }),
     defineField({

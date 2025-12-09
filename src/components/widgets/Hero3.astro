@@ -24,8 +24,8 @@ const {
     </slot>
   </div>
 
-  <!-- Dark Overlay for Text Readability -->
-  <div class="absolute inset-0 bg-black/50 dark:bg-black/70 -z-10"></div>
+  <!-- Gradient Overlay for Text Readability - Left to Right Scrim -->
+  <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent dark:from-black/70 dark:via-black/50 dark:to-black/20 -z-10"></div>
 
   <!-- Left-Aligned Content -->
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
@@ -43,7 +43,7 @@ const {
         {
           title && (
             <h1
-              class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tighter tracking-tighter mb-6 font-heading text-white intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+              class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tighter tracking-tighter mb-10 font-heading text-white text-balance intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
               set:html={title}
             />
           )

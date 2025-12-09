@@ -47,7 +47,6 @@ export interface SanityProperty {
   garages: number;
   livingArea: string;
   location: string;
-  region: string;
   tag?: string[];
 }
 
@@ -74,7 +73,6 @@ export function transformSanityProperty(sanityProperty: SanityProperty) {
     garages: sanityProperty.garages,
     livingArea: sanityProperty.livingArea,
     location: sanityProperty.location,
-    region: sanityProperty.region,
     tag: sanityProperty.tag || [],
   };
 }

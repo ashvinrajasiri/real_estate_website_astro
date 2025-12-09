@@ -76,7 +76,6 @@ async function migrateProperties() {
         garages: property.garages,
         livingArea: property.livingArea,
         location: property.location,
-        region: property.region,
         tag: property.tag || [],
       };
 
